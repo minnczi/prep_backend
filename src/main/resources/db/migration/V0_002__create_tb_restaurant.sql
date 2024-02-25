@@ -1,9 +1,7 @@
-CREATE TABLE `TB_RESTAURANT`
-(
-    `RESTAURANT_ID` VARCHAR(36) PRIMARY KEY COMMENT '음식점 아이디',
-    `RESTAURANT_NAME` VARCHAR(30) NOT NULL COMMENT '사용자 이름',
-    `RESTAURANT_ADDRESS` VARCHAR(200) NOT NULL COMMENT '음식점 주소',
-    `RESTAURANT_CATEGORY` VARCHAR(8) NOT NULL COMMENT '음식점 카테고리',
-    `OPERATION_YN` VARCHAR(1) NOT NULL COMMENT '음식점 영업 여부(Y/N)'
-) COMMENT = '음식점 테이블'
-;
+CREATE TABLE `tb_restaurant` (
+     `restaurant_id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '음식점 id',
+     `restaurant_name`	VARCHAR(40)	NOT NULL COMMENT '음식점명',
+     `restaurant_address`	VARCHAR(100) NULL COMMENT '음식점 주소',
+     `restaurant_category`	VARCHAR(20)	NULL COMMENT '음식점 카테고리',
+     `open_status`	VARCHAR(10)	NOT NULL COMMENT '음식점 영업 상태 (OPEN-영업중, CLOSED-휴점,폐점)'
+) COMMENT = '음식점' ENGINE=InnoDB;
