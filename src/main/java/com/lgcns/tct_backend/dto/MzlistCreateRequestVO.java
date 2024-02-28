@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MzlistCreateRequestVO {
-    private String mzlistName;
-    private String mzlistDescription;
-    private String mzlistIcon;
+  private String mzlistName;
+  private String mzlistDescription;
+  private String mzlistIcon;
 }

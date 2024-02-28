@@ -12,15 +12,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tb_restaurant")
 public class Restaurant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long restaurantId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long restaurantId;
 
-    private String restaurantName;
+  private String restaurantName;
 
-    private String restaurantAddress;
+  private String restaurantAddress;
 
-    private String restaurantCategory;
+  private String restaurantCategory;
 
-    private String openStatus;
+  private String openStatus;
 }

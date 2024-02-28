@@ -5,11 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SessionUtil {
-    public static SessionUserVO getSessionUser() {
-        return SessionUserVO.builder()
-                .userId(1L)
-                .userName("민지")
-                .nickname("chloe")
-                .build();
-    }
+  public static SessionUserVO getSessionUser() {
+    return SessionUserVO.builder().userId(1L).userName("민지").nickname("chloe").build();
+  }
 }

@@ -1,12 +1,11 @@
 package com.lgcns.tct_backend.model;
 
 import jakarta.persistence.*;
+import java.util.Date;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -14,21 +13,21 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_user")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long userId;
 
-    private String userName;
+  private String userName;
 
-    private String nickname;
+  private String nickname;
 
-    private String password;
+  private String password;
 
-    private Date userBirthday;
+  private Date userBirthday;
 
-    private String gender;
+  private String gender;
 
-    private String authorityCode;
+  private String authorityCode;
 
-    private String useYn;
+  private String useYn;
 }

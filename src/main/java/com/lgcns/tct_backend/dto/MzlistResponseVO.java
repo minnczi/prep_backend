@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 @Builder
 public class MzlistResponseVO {
-    private Long listId;
-    private Long userId;
-    private String mzlistName;
-    private String mzlistDescription;
-    private String mzlistIcon;
+  private Long listId;
+  private Long userId;
+  private String mzlistName;
+  private String mzlistDescription;
+  private String mzlistIcon;
 }
