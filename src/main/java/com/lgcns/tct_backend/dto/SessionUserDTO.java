@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class SessionUserVO {
+public class SessionUserDTO {
   private Long userId;
 
   private String userName;

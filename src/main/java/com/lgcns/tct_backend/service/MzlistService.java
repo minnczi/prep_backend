@@ -1,9 +1,9 @@
 package com.lgcns.tct_backend.service;
 
-import com.lgcns.tct_backend.dto.MzlistCreateRequestVO;
-import com.lgcns.tct_backend.dto.MzlistResponseVO;
-import com.lgcns.tct_backend.dto.MzlistUpdateRequestVO;
-import com.lgcns.tct_backend.dto.SessionUserVO;
+import com.lgcns.tct_backend.dto.MzlistCreateRequestDTO;
+import com.lgcns.tct_backend.dto.MzlistResponseDTO;
+import com.lgcns.tct_backend.dto.MzlistUpdateRequestDTO;
+import com.lgcns.tct_backend.dto.SessionUserDTO;
 import com.lgcns.tct_backend.model.Mzlist;
 import com.lgcns.tct_backend.repository.MzlistRepository;
 import com.lgcns.tct_backend.util.SessionUtil;
@@ -17,41 +17,39 @@ public class MzlistService {
 
   private final MzlistRepository mzlistRepository;
 
-  public MzlistResponseVO findMzlistByListId(Long listId) {
+  public MzlistResponseDTO findMzlistByListId(Long listId) {
     // 아이디의 유효성 체크
     Mzlist mzlist = mzlistRepository.findById(listId).orElseThrow();
 
-    MzlistResponseVO responseVO =
-        MzlistResponseVO.builder()
+    return MzlistResponseDTO.builder()
             .listId(mzlist.getMzlistId())
             .userId(mzlist.getUserId())
             .mzlistName(mzlist.getMzlistName())
             .mzlistDescription(mzlist.getMzlistDescription())
             .mzlistIcon(mzlist.getMzlistIcon())
             .build();
-    return responseVO;
   }
 
-  public List<MzlistResponseVO> findMzlistByUserId(Long listId) {
+  public List<MzlistResponseDTO> findMzlistByUserId(Long listId) {
     return null;
   }
 
-  public Long createMzlist(MzlistCreateRequestVO mzlistCreateRequestVO) {
-    SessionUserVO user = SessionUtil.getSessionUser();
+  public Long createMzlist(MzlistCreateRequestDTO mzlistCreateRequestDTO) {
+    SessionUserDTO user = SessionUtil.getSessionUser();
 
     Mzlist mzlist =
         Mzlist.builder()
             .userId(user.getUserId())
-            .mzlistName(mzlistCreateRequestVO.getMzlistName())
-            .mzlistDescription(mzlistCreateRequestVO.getMzlistDescription())
-            .mzlistIcon(mzlistCreateRequestVO.getMzlistIcon())
+            .mzlistName(mzlistCreateRequestDTO.getMzlistName())
+            .mzlistDescription(mzlistCreateRequestDTO.getMzlistDescription())
+            .mzlistIcon(mzlistCreateRequestDTO.getMzlistIcon())
             .build();
 
     Mzlist savedList = mzlistRepository.save(mzlist);
     return savedList.getMzlistId();
   }
 
-  public Long updateMzlist(Long listId, MzlistUpdateRequestVO mzlistUpdateRequestVO) {
+  public Long updateMzlist(Long listId, MzlistUpdateRequestDTO mzlistUpdateRequestDTO) {
     return null;
   }
 

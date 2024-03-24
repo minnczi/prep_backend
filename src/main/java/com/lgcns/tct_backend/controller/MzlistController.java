@@ -1,8 +1,8 @@
 package com.lgcns.tct_backend.controller;
 
-import com.lgcns.tct_backend.dto.MzlistCreateRequestVO;
-import com.lgcns.tct_backend.dto.MzlistResponseVO;
-import com.lgcns.tct_backend.dto.MzlistUpdateRequestVO;
+import com.lgcns.tct_backend.dto.MzlistCreateRequestDTO;
+import com.lgcns.tct_backend.dto.MzlistResponseDTO;
+import com.lgcns.tct_backend.dto.MzlistUpdateRequestDTO;
 import com.lgcns.tct_backend.service.MzlistService;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
@@ -25,13 +25,13 @@ public class MzlistController {
   // 3. 우리 프로젝트의 목적에 버전 관리가 필요할지 검토 필요
   // 4. Swagger에 설명으로 기입하는것도 좋은것 같다
   @GetMapping(path = "/{listId}")
-  public ResponseEntity<MzlistResponseVO> findMzlistByListId(@PathVariable String listId) {
+  public ResponseEntity<MzlistResponseDTO> findMzlistByListId(@PathVariable String listId) {
     return new ResponseEntity<>(
         mzlistService.findMzlistByListId(Long.parseLong(listId)), HttpStatus.OK);
   }
 
   @GetMapping(path = "")
-  public ResponseEntity<List<MzlistResponseVO>> findMzlistByUserId(HttpSession session) {
+  public ResponseEntity<List<MzlistResponseDTO>> findMzlistByUserId(HttpSession session) {
     // TODO: session 관련된 공통 묘듈 만들기
     String userId = (String) session.getAttribute("userId");
 
@@ -46,15 +46,15 @@ public class MzlistController {
 
   @PostMapping(path = "")
   public ResponseEntity<Long> createMzlist(
-      @RequestBody MzlistCreateRequestVO mzlistCreateRequestVO) {
-    return new ResponseEntity<>(mzlistService.createMzlist(mzlistCreateRequestVO), HttpStatus.OK);
+      @RequestBody MzlistCreateRequestDTO mzlistCreateRequestDTO) {
+    return new ResponseEntity<>(mzlistService.createMzlist(mzlistCreateRequestDTO), HttpStatus.OK);
   }
 
   @PutMapping(path = "/{listId}")
   public ResponseEntity<Long> updateMzlist(
-      @PathVariable String listId, @RequestBody MzlistUpdateRequestVO mzlistUpdateRequestVO) {
+      @PathVariable String listId, @RequestBody MzlistUpdateRequestDTO mzlistUpdateRequestDTO) {
     return new ResponseEntity<>(
-        mzlistService.updateMzlist(Long.parseLong(listId), mzlistUpdateRequestVO), HttpStatus.OK);
+        mzlistService.updateMzlist(Long.parseLong(listId), mzlistUpdateRequestDTO), HttpStatus.OK);
   }
 
   @DeleteMapping("/{listId}")
