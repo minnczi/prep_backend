@@ -9,29 +9,27 @@ import com.lgcns.tct_backend.repository.MzlistRepository;
 import com.lgcns.tct_backend.util.SessionUtil;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class MzlistService {
 
+  private final ModelMapper modelMapper;
   private final MzlistRepository mzlistRepository;
 
   public MzlistResponseDTO findMzlistByListId(Long listId) {
     // 아이디의 유효성 체크
     Mzlist mzlist = mzlistRepository.findById(listId).orElseThrow();
 
-    return MzlistResponseDTO.builder()
-            .listId(mzlist.getMzlistId())
-            .userId(mzlist.getUserId())
-            .mzlistName(mzlist.getMzlistName())
-            .mzlistDescription(mzlist.getMzlistDescription())
-            .mzlistIcon(mzlist.getMzlistIcon())
-            .build();
+    return modelMapper.map(mzlist, MzlistResponseDTO.class);
   }
 
-  public List<MzlistResponseDTO> findMzlistByUserId(Long listId) {
-    return null;
+  public List<MzlistResponseDTO> findMzlistByUserId(Long userId) {
+    List<Mzlist> mzlist = mzlistRepository.findAllByUserId(userId);
+    return modelMapper.map(mzlist, new TypeToken<List<MzlistResponseDTO>>() {}.getType());
   }
 
   public Long createMzlist(MzlistCreateRequestDTO mzlistCreateRequestDTO) {
@@ -49,11 +47,18 @@ public class MzlistService {
     return savedList.getMzlistId();
   }
 
-  public Long updateMzlist(Long listId, MzlistUpdateRequestDTO mzlistUpdateRequestDTO) {
-    return null;
+  public Long updateMzlist(Long mzlistId, MzlistUpdateRequestDTO mzlistUpdateRequestDTO) {
+    Mzlist mzlist = mzlistRepository.findById(mzlistId).orElseThrow();
+    mzlist.updateMzlist(mzlistUpdateRequestDTO.getMzlistName(),
+                        mzlistUpdateRequestDTO.getMzlistDescription(),
+                        mzlistUpdateRequestDTO.getMzlistIcon());
+    mzlistRepository.save(mzlist);
+    return mzlistId;
   }
 
-  public Long deleteMzlist(Long listId) {
-    return null;
+  public Long deleteMzlist(Long mzlistId) {
+    Mzlist mzlist = mzlistRepository.findById(mzlistId).orElseThrow();
+    mzlistRepository.delete(mzlist);
+    return mzlistId;
   }
 }

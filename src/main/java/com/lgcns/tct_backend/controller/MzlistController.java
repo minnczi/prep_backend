@@ -24,10 +24,10 @@ public class MzlistController {
   // 2. uri가 바뀜에 따라 영향도가 있음 (ex. 프론트엔드에서 호출할때)
   // 3. 우리 프로젝트의 목적에 버전 관리가 필요할지 검토 필요
   // 4. Swagger에 설명으로 기입하는것도 좋은것 같다
-  @GetMapping(path = "/{listId}")
-  public ResponseEntity<MzlistResponseDTO> findMzlistByListId(@PathVariable String listId) {
+  @GetMapping(path = "/{mzlistId}")
+  public ResponseEntity<MzlistResponseDTO> findMzlistByListId(@PathVariable String mzlistId) {
     return new ResponseEntity<>(
-        mzlistService.findMzlistByListId(Long.parseLong(listId)), HttpStatus.OK);
+        mzlistService.findMzlistByListId(Long.parseLong(mzlistId)), HttpStatus.OK);
   }
 
   @GetMapping(path = "")
@@ -50,15 +50,15 @@ public class MzlistController {
     return new ResponseEntity<>(mzlistService.createMzlist(mzlistCreateRequestDTO), HttpStatus.OK);
   }
 
-  @PutMapping(path = "/{listId}")
+  @PutMapping(path = "/{mzlistId}")
   public ResponseEntity<Long> updateMzlist(
-      @PathVariable String listId, @RequestBody MzlistUpdateRequestDTO mzlistUpdateRequestDTO) {
+      @PathVariable String mzlistId, @RequestBody MzlistUpdateRequestDTO mzlistUpdateRequestDTO) {
     return new ResponseEntity<>(
-        mzlistService.updateMzlist(Long.parseLong(listId), mzlistUpdateRequestDTO), HttpStatus.OK);
+        mzlistService.updateMzlist(Long.parseLong(mzlistId), mzlistUpdateRequestDTO), HttpStatus.OK);
   }
 
-  @DeleteMapping("/{listId}")
-  public ResponseEntity<Long> deleteMzlist(@PathVariable String listId) {
-    return new ResponseEntity<>(mzlistService.deleteMzlist(Long.parseLong(listId)), HttpStatus.OK);
+  @DeleteMapping("/{mzlistId}")
+  public ResponseEntity<Long> deleteMzlist(@PathVariable String mzlistId) {
+    return new ResponseEntity<>(mzlistService.deleteMzlist(Long.parseLong(mzlistId)), HttpStatus.OK);
   }
 }

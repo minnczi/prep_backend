@@ -26,4 +26,10 @@ public class Mzlist {
 
   @Column(name = "mzlist_icon")
   private String mzlistIcon;
+
+  public void updateMzlist(String mzlistName, String mzlistDescription, String mzlistIcon) {
+    this.mzlistName = mzlistName;
+    this.mzlistDescription = mzlistDescription;
+    this.mzlistIcon = mzlistIcon;
+  }
 }
