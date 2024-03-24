@@ -7,15 +7,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ModelMapperConfig {
 
+  private final ModelMapper modelMapper = new ModelMapper();
+
   @Bean
   public ModelMapper modelMapper() {
-    ModelMapper modelMapper = new ModelMapper();
-
-    // modelMapper.getConfiguration()
-    // .setMatchingStrategy(MatchingStrategies.STRICT)
-    // .setDestinationNamingConvention(LombokBuilderNamingConvention.INSTANCE)
-    // .setDestinationNameTransformer(LombokBuilderNameTransformer.INSTANCE);
-
     return modelMapper;
   }
 }
