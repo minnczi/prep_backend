@@ -1,6 +1,5 @@
 package com.lgcns.tct_backend.dto;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
